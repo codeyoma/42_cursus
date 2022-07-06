@@ -6,7 +6,7 @@
 #    By: yongmkim <codeyoma@gmail.com>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/06 10:09:55 by yongmkim          #+#    #+#              #
-#    Updated: 2022/07/06 10:18:59 by yongmkim         ###   ########.fr        #
+#    Updated: 2022/07/06 13:54:08 by yongmkim         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #==============================================================================
@@ -64,22 +64,26 @@ OBJ_DIR		=	./object/
 SRC_DIR		=	
 INC_DIR		=	
 OBJ			=	$(addprefix $(OBJ_DIR), $(SRC:.c=.o))
+OBJ_B		=	$(addprefix $(OBJ_DIR), $(SRC_B:.c=.o))
 LIB_LNK		=	-I $(INC_DIR)
 
 #OBJECT		=	$(OBJ)
 ifdef WITH_BONUS
-	OBJECT	=	$(OBJ_B)
+	OBJECT	+=	$(OBJ_B)
 else
-	OBJECT	=	$(OBJ)
+	OBJECT	+=	$(OBJ)
 endif
 
 #==============================================================================
 #	Compile
 #==============================================================================
 CC			=	gcc
-CC_FLAG		=	-Wall -Wextra -Werror
+CC_W_FLAG	=	all extra error
+CC_FLAG		+=	$(addprefix -W, $(CC_W_FLAG))
 RM			=	rm
 RM_FLAG		=	-f
+AR			=	ar
+AR_FLAG		=	rcus
 SNTZ		=	-g -fsanitize=address -fno-omit-frame-pointer
 THREAD		=	-g -fsanitize=thread -fno-omit-frame-pointer
 MEM			=	-g -fsanitize=memory -fsanitize-memory-track-origins \
@@ -122,7 +126,7 @@ $(NAME)		:	$(OBJECT)
 		@if [ $(idx) -gt 0 ]; then\
 			printf "\b$(_DONE)\n";\
 		fi
-		@$(CC) $(CFLAG) $(TEMP) $(LIB_LNK) $(OBJECT) -o $(NAME)
+		@$(AR) $(AR_FLAG) $@ $^
 		@printf "$(_SUCCESS) $(_NAME) - all $(_DONE)\n"
 
 #==============================================================================
@@ -216,7 +220,7 @@ show		:	command
 		@printf "NAME	: $(NAME)\n"
 		@printf "CC	: $(CC)\n"
 		@printf "CC_FLAG	: $(CC_FLAG)\n"
-		@printf "PTH_FLAG	: $(PTH_FLAG)\n"
+		@printf "PTH_FLAG: $(PTH_FLAG)\n"
 		@printf "SRC_DIR	: $(SRC_DIR)\n"
 		@printf "OBJ_DIR	: $(OBJ_DIR)\n"
 		@printf "INC_DIR	: $(INC_DIR)\n"
