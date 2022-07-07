@@ -23,24 +23,21 @@ void	*ft_memset(void *b, int c, size_t len)
 
 void	ft_bzero(void *s, size_t n)
 {
-	ft_memst(s, 0, n);
+	ft_memset(s, 0, n);
 }
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	if (dst != src)
-		while (n--)
-			((unsigned char *)dst)[n] = ((unsigned char *)src)[n];
-	return (dst);
 }
 
-void	*memmove(void *dst, const void *src, size_t len)
+char	*ft_strdup(const char *s1)
 {
-	if (src < dst && dst < src + len)
-	{
-		while (len--)
-			((unsigned char *)dst)[len] = ((unsigned char *)src)[len];
-		return (dst);
-	}
-	return (ft_memcpy(dst, src, len));
+	char	*temp;
+	size_t	len;
+
+	len = ft_strlen(s1) + 1;
+	temp = ft_calloc(len, sizeof(char));
+	if (temp)
+		ft_memcpy(temp, s1, len);
+	return (temp);
 }
