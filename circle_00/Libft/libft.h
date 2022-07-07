@@ -30,7 +30,6 @@ void	ft_bzero(void *s, size_t n);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_strdup(const char *s1);
 
-
 /*		ft_libc_string_cpy.c
 **==============================================================================
 */
@@ -51,6 +50,5 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n);
 /*		ft_libc_string_lo
 **==============================================================================
 */
-
 
 #endif

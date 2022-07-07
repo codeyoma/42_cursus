@@ -28,6 +28,23 @@ void	ft_bzero(void *s, size_t n)
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
+	size_t	haystack_len;
+	size_t	needle_len;
+
+	needle_len = ft_strlen(needle);
+	if (!needle_len)
+		return ((char *)haystack);
+	haystack_len = ft_strlen(haystack);
+	if (len < haystack_len)
+		haystack_len = len;
+	while (*haystack && len >= needle_len)
+	{
+		if (!ft_strcmp(haystack, needle, needle_len))
+			return ((char *)haystack);
+		haystack++;
+		len--;
+	}
+	return (NULL);
 }
 
 char	*ft_strdup(const char *s1)
