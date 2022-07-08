@@ -94,6 +94,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 // }
 */
 
+
 char	**__ft_split(char const *s, char c, int index)
 {
 	char	**result;
