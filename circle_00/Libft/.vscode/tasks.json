@@ -1,0 +1,32 @@
+{
+	// See https://go.microsoft.com/fwlink/?LinkId=733558
+	// for the documentation about the tasks.json format
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "clang build",
+			"type": "process",
+			"command": "/usr/bin/clang",
+			"args": [
+				"-g",
+				"-fsanitize=address",
+				"-o",
+				"test",
+				"./ft_util_io.c",
+				"./ft_libc_stdlib.c",
+				"./ft_libc_string_util.c",
+				"./ft_libc_string_cpy.c",
+				"./ft_libc_string_locate_and_compare.c",
+				"./ft_libc_ctype_convert.c",
+				"./main.c",
+				"./ft_util_string.c",
+				"./ft_libc_ctype_syntax.c",
+				"./ft_util_split.c"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		}
+	]
+}
