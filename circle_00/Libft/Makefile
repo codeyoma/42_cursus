@@ -6,7 +6,7 @@
 #    By: yongmkim <yongmkim@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/06 10:09:55 by yongmkim          #+#    #+#              #
-#    Updated: 2022/07/08 17:06:10 by yongmkim         ###   ########seoul.kr   #
+#    Updated: 2022/07/09 15:18:56 by yongmkim         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,15 +52,21 @@ NAME		=	libft.a
 #==============================================================================
 #	Source
 #==============================================================================
-SRC			= $(shell find . -name '*.c')
-
+SRC			=	ft_libc_ctype_convert.c \
+				ft_libc_ctype_syntax.c \
+				ft_libc_stdlib.c \
+				ft_libc_string_cpy.c \
+				ft_libc_string_locate_and_compare.c \
+				ft_libc_string_util.c \
+				ft_util_io.c \
+				ft_util_string.c \
 
 SRC_B		=
 
 #==============================================================================
 #	Directory
 #==============================================================================
-OBJ_DIR		=	./object/
+OBJ_DIR		=	object/
 SRC_DIR		=
 INC_DIR		=
 OBJ			=	$(addprefix $(OBJ_DIR), $(SRC:.c=.o))
@@ -119,7 +125,6 @@ DEFINE		=	-DLEAK_CHECK=1
 #==============================================================================
 .PHONY		:	all
 all			:
-		@make obj_dir
 		@make $(NAME)
 
 $(NAME)		:	$(OBJECT)
@@ -136,6 +141,8 @@ $(NAME)		:	$(OBJECT)
 obj_dir		:
 		@mkdir -p $(OBJ_DIR)
 
+$(OBJECT)	:	obj_dir
+
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(INC_DIR)
 		$(eval idx = $(shell expr $(idx) + 1))
 		$(eval t_idx = $(shell expr $(idx) % 4 + 1))
@@ -144,7 +151,8 @@ $(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(INC_DIR)
 			printf "   $(_PROG) ";\
 		fi
 		@printf "\b$(chr)"
-		@$(CC) $(CFLAG) $(LIB_LNK) -o $@ -c $<
+		@$(CC) $(CFLAG) -o $@ -c $<
+#@$(CC) $(CFLAG) $(LIB_LNK) -o $@ -c $<
 
 #==============================================================================
 #	clean fclean re
@@ -225,7 +233,7 @@ show		:	command
 		@printf "OBJ_DIR	: $(OBJ_DIR)\n"
 		@printf "INC_DIR	: $(INC_DIR)\n"
 		@printf "SRC	: $(SRC)\n"
-		@printf "COMPILE	: $(CC) $(CFLAG) $(PTH_FLAG) $(LIB_LNK) $(OBJECT)\n"
+		@printf "COMPILE	: $(CC) $(CFLAG) $(LIB_LNK) $(OBJECT)\n"
 		@printf "\n"
 
 com			:	command
