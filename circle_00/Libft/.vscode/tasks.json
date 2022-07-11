@@ -20,8 +20,7 @@
 				"./ft_libc_ctype_convert.c",
 				"./main.c",
 				"./ft_util_string.c",
-				"./ft_libc_ctype_syntax.c",
-				"./ft_util_split.c"
+				"./ft_libc_ctype_syntax.c"
 			],
 			"group": {
 				"kind": "build",
