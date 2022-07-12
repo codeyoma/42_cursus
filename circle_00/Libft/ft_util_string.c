@@ -66,3 +66,51 @@ char	*ft_strtrim(char const *s1, char const *set)
 	}
 	return (ft_substr(s1, front_pos, rear_pos - front_pos + 1));
 }
+
+static char	**_append(char **org, char *append, size_t *size, size_t *cur)
+{
+	char	**temp;
+
+	if (*cur < *size - 1)
+	{
+		org[(*cur)++] = append;
+		return (org);
+	}
+	*size *= 2;
+	temp = ft_calloc(*size, sizeof(char *));
+	if (temp)
+	{
+		ft_memcpy(temp, org, *cur * sizeof(char *));
+		temp[(*cur)++] = append;
+		free(org);
+		return (temp);
+	}
+	return (NULL);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**temp;
+	char	*pos;
+	size_t	size;
+	size_t	cur;
+
+	if (!s)
+		return (NULL);
+	size = 2;
+	cur = 0;
+	temp = ft_calloc(size, sizeof(char *));
+	while (temp && *s)
+	{
+		if (*s != c)
+		{
+			pos = ft_strchr(s, c);
+			if (!pos)
+				pos = (char *)s + ft_strlen(s);
+			temp = _append(temp, ft_substr(s, 0, pos - s), &size, &cur);
+			s = pos;
+		}
+		s++;
+	}
+	return (temp);
+}
