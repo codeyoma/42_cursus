@@ -6,7 +6,7 @@
 #    By: yongmkim <yongmkim@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/06 10:09:55 by yongmkim          #+#    #+#              #
-#    Updated: 2022/07/09 15:18:56 by yongmkim         ###   ########.fr        #
+#    Updated: 2022/07/12 11:11:30 by yongmkim         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,7 @@ SRC			=	ft_libc_ctype_convert.c \
 				ft_libc_string_util.c \
 				ft_util_io.c \
 				ft_util_string.c \
+				ft_util_split.c \
 
 SRC_B		=
 

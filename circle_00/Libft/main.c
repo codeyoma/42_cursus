@@ -24,4 +24,5 @@ int main(int argc, char **argv) {
 			printf("%s\n", arr2[i]);
 		}
 	}
+	return 0;
 }
