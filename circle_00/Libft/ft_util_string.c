@@ -71,9 +71,17 @@ static char	**_append(char **org, char *append, size_t *size, size_t *cur)
 {
 	char	**temp;
 
+	if (*cur < 0)
+	{
+		temp = org;
+		while (temp && *org)
+			free(*(org++));
+		free(temp);
+		return (NULL);
+	}
 	if (*cur < *size - 1)
 	{
-		org[(*cur)++] = append;
+		org[(*cur)] = append;
 		return (org);
 	}
 	*size *= 2;
@@ -81,7 +89,7 @@ static char	**_append(char **org, char *append, size_t *size, size_t *cur)
 	if (temp)
 	{
 		ft_memcpy(temp, org, *cur * sizeof(char *));
-		temp[(*cur)++] = append;
+		temp[(*cur)] = append;
 		free(org);
 		return (temp);
 	}
@@ -90,27 +98,28 @@ static char	**_append(char **org, char *append, size_t *size, size_t *cur)
 
 char	**ft_split(char const *s, char c)
 {
-	char	**temp;
-	char	*pos;
-	size_t	size;
-	size_t	cur;
+	t_split_info	sp;
 
 	if (!s)
 		return (NULL);
-	size = 2;
-	cur = 0;
-	temp = ft_calloc(size, sizeof(char *));
-	while (temp && *s)
+	sp.size = 2;
+	sp.cur = 0;
+	sp.sv_temp = ft_calloc(sp.size, sizeof(char *));
+	while (sp.sv_temp && *s)
 	{
 		if (*s != c)
 		{
-			pos = ft_strchr(s, c);
-			if (!pos)
-				pos = (char *)s + ft_strlen(s);
-			temp = _append(temp, ft_substr(s, 0, pos - s), &size, &cur);
-			s = pos;
+			sp.pos = ft_strchr(s, c);
+			if (!sp.pos)
+				sp.pos = (char *)s + ft_strlen(s);
+			sp.s_temp = ft_substr(s, 0, sp.pos - s);
+			if (!sp.s_temp)
+				return (_append(sp.sv_temp, NULL, &sp.size, &sp.cur));
+			sp.sv_temp = _append(sp.sv_temp, sp.s_temp, &sp.size, &sp.cur);
+			sp.cur++;
+			s = sp.pos;
 		}
 		s++;
 	}
-	return (temp);
+	return (sp.temp);
 }

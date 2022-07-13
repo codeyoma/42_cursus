@@ -6,6 +6,15 @@
 
 # include <stddef.h>
 
+typedef struct s_split_info
+{
+	char		**sv_temp;
+	char		*pos;
+	char		*s_temp;
+	size_t		size;
+	size_t		cur;
+}				t_split_info;
+
 /*		ft_libc_ctype_syntax.c
 **==============================================================================
 */
