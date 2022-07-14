@@ -28,7 +28,7 @@ int	ft_atoi(const char *str)
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	char	*temp;
+	void	*temp;
 	size_t	count_x_size;
 
 	count_x_size = count * size;

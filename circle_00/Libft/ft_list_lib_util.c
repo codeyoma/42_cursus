@@ -56,7 +56,10 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 			ft_lstclear(&return_list, del);
 			return (NULL);
 		}
-		ft_lstadd_back(&lst, temp);
+		if (!return_list)
+			return_list = temp;
+		else
+			ft_lstadd_back(&return_list, temp);
 		lst = lst->next;
 	}
 	return (return_list);

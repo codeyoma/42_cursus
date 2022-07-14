@@ -6,30 +6,30 @@
 
 char	*ft_itoa(int n)
 {
-	char	*temp;
-	size_t	len;
+	t_itoa_info	it;
 
-	len = !n;
-	while (n)
+	it.len = !n;
+	it.n_backup = n;
+	while (it.n_backup)
 	{
-		len++;
-		n /= 10;
+		it.len++;
+		it.n_backup /= 10;
 	}
-	len = (n < 0) + len;
-	temp = ft_calloc(len + 1, sizeof(char));
-	if (temp)
+	it.len += (n < 0);
+	it.temp = ft_calloc(it.len + 1, sizeof(char));
+	if (it.temp)
 	{
 		if (n < 0)
-			temp[0] = '-';
-		if (!n)
-			temp[--len] = '0';
+			it.temp[0] = '-';
+		else if (!n)
+			it.temp[--it.len] = '0';
 		while (n)
 		{
-			temp[--len] = '0' + ((1 - ((n < 0) << 1)) * (n % 10));
+			it.temp[--it.len] = '0' + ((1 - ((n < 0) << 1)) * (n % 10));
 			n /= 10;
 		}
 	}
-	return (temp);
+	return (it.temp);
 }
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))

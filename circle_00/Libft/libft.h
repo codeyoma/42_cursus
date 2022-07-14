@@ -15,6 +15,13 @@ typedef struct s_split_info
 	size_t		cur;
 }				t_split_info;
 
+typedef struct s_itoa_info
+{
+	char	*temp;
+	size_t	len;
+	int		n_backup;
+}			t_itoa_info;
+
 typedef struct s_list
 {
 	struct s_list	*next;
@@ -91,6 +98,9 @@ char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 
+/*		Bonus part
+**==============================================================================
+*/
 /*		ft_list_lib.c
 **==============================================================================
 */
