@@ -84,7 +84,7 @@ static char	**_append_sv(char **org, char *append, size_t *size, size_t cur)
 		org[cur] = append;
 		return (org);
 	}
-	*size *= 2;
+	*size <<= 1;
 	temp = ft_calloc(*size, sizeof(char *));
 	if (temp)
 	{

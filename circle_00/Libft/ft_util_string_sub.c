@@ -6,7 +6,30 @@
 
 char	*ft_itoa(int n)
 {
+	char	*temp;
+	size_t	len;
 
+	len = !n;
+	while (n)
+	{
+		len++;
+		n /= 10;
+	}
+	len = (n < 0) + len;
+	temp = ft_calloc(len + 1, sizeof(char));
+	if (temp)
+	{
+		if (n < 0)
+			temp[0] = '-';
+		if (!n)
+			temp[--len] = '0';
+		while (n)
+		{
+			temp[--len] = '0' + ((1 - ((n < 0) << 1)) * (n % 10));
+			n /= 10;
+		}
+	}
+	return (temp);
 }
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))

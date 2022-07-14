@@ -48,9 +48,10 @@ SRC			=	ft_libc_ctype_convert.c \
 				ft_libc_string_locate_and_compare.c \
 				ft_libc_string_util.c \
 				ft_util_io.c \
+				ft_util_string_sub.c \
 				ft_util_string.c \
 
-SRC_B		=
+SRC_B		=	\
 
 #==============================================================================
 #	Directory
@@ -64,7 +65,7 @@ LIB_LNK		=	-I $(INC_DIR)
 
 #OBJECT		=	$(OBJ)
 ifdef WITH_BONUS
-	OBJECT	+=	$(OBJ_B)
+	OBJECT	+=	$(OBJ) $(OBJ_B)
 else
 	OBJECT	+=	$(OBJ)
 endif

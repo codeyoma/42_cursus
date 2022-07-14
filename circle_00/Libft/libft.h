@@ -15,6 +15,12 @@ typedef struct s_split_info
 	size_t		cur;
 }				t_split_info;
 
+typedef struct s_list
+{
+	struct s_list	*next;
+	void			*content;
+}					t_list;
+
 /*		ft_libc_ctype_syntax.c
 **==============================================================================
 */
@@ -77,5 +83,12 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
+
+/*		ft_util_string_sub.c
+**==============================================================================
+*/
+char	*ft_itoa(int n);
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 
 #endif
