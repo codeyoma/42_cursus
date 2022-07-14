@@ -29,11 +29,9 @@ int	ft_atoi(const char *str)
 void	*ft_calloc(size_t count, size_t size)
 {
 	void	*temp;
-	size_t	count_x_size;
 
-	count_x_size = count * size;
-	temp = malloc(count_x_size);
+	temp = malloc(count * size);
 	if (temp)
-		ft_bzero(temp, count_x_size);
+		ft_bzero(temp, count * size);
 	return (temp);
 }

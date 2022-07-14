@@ -7,11 +7,12 @@
 
 void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	if (!lst)
-		return ;
-	if (del)
-		del(lst->content);
-	free(lst);
+	if (lst)
+	{
+		if (del)
+			del(lst->content);
+		free(lst);
+	}
 }
 
 void	ft_lstclear(t_list **lst, void (*del)(void *))
@@ -56,10 +57,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 			ft_lstclear(&return_list, del);
 			return (NULL);
 		}
-		if (!return_list)
-			return_list = temp;
-		else
-			ft_lstadd_back(&return_list, temp);
+		ft_lstadd_back(&return_list, temp);
 		lst = lst->next;
 	}
 	return (return_list);

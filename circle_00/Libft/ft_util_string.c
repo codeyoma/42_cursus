@@ -21,7 +21,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		dst_len = len;
 	temp = ft_calloc(dst_len + 1, sizeof(char));
 	if (temp)
+	{
 		ft_memcpy(temp, s + start, dst_len);
+		temp[dst_len] = '\0';
+	}
 	return (temp);
 }
 
@@ -118,7 +121,8 @@ char	**ft_split(char const *s, char c)
 			sp.cur++;
 			s = sp.pos;
 		}
-		s++;
+		if (*s)
+			s++;
 	}
 	return (sp.sv_temp);
 }

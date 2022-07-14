@@ -43,15 +43,14 @@ int	ft_lstsize(t_list *lst)
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	t_list	*follow;
-
-	follow = NULL;
-	while (lst)
+	if (lst)
 	{
-		follow = lst;
-		lst = lst->next;
+		while (lst->next)
+		{
+			lst = lst->next;
+		}
 	}
-	return (follow);
+	return (lst);
 }
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
