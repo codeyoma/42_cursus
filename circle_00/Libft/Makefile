@@ -228,6 +228,7 @@ command		:
 		@printf "clean	: del *.o\n"
 		@printf "fclean	: [clean] + del target\n"
 		@printf "re	: [fclean] + [all]\n"
+		@printf "bonus	: bonus, create target\n"
 		@printf "show	: print info\n"
 		@printf "command	: print command list\n"
 		@printf "sntz	: $(SNTZ)\n"
