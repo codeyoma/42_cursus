@@ -117,8 +117,8 @@ $(NAME)		:	$(OBJECT)
 # @if [ $(idx) -gt 0 ]; then\
 # 	printf "\b$(_DONE)\n";\
 # fi
-		@$(AR) $(AR_FLAG) $@ $^
-		@printf "$(_SUCCESS) $(_NAME) - $(_PART) $(_DONE)\n"
+		$(AR) $(AR_FLAG) $@ $^
+# @printf "$(_SUCCESS) $(_NAME) - $(_PART) $(_DONE)\n"
 
 #==============================================================================
 #	Object file, library Make
@@ -137,7 +137,7 @@ $(OBJ_DIR)%.o:	$(SRC_DIR)%.c
 # 	printf "   $(_prog) ";\
 # fi
 # @printf "\b$(chr)"
-		@$(CC) $(CFLAG) -o $@ -c $<
+		$(CC) $(CFLAG) -o $@ -c $<
 #@$(CC) $(CFLAG) $(LIB_LNK) -o $@ -c $<
 
 #==============================================================================
@@ -147,22 +147,22 @@ $(OBJ_DIR)%.o:	$(SRC_DIR)%.c
 c			:	clean
 clear		:	clean
 clean		:
-		@$(RM) -rf $(OBJ_DIR)
-		@printf "   $(_INFO) $(_CLEAN) - clean $(_DONE)\n"
+		$(RM) -rf $(OBJ_DIR)
+# @printf "   $(_INFO) $(_CLEAN) - clean $(_DONE)\n"
 f			:	fclean
 fclear		:	fclean
 fclean		:
-		@make clean
-		@$(RM) -f $(NAME)
-		@printf "   $(_INFO) $(_CLEAN) - fclean $(_DONE)\n"
+		make clean
+		$(RM) -f $(NAME)
+# @printf "   $(_INFO) $(_CLEAN) - fclean $(_DONE)\n"
 
 re			:
-		@make fclean
-		@make all
+		make fclean
+		make all
 
 b			:	bonus
 bonus		:
-		@make WITH_BONUS=1 all
+		make WITH_BONUS=1 all
 
 
 
