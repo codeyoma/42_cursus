@@ -43,30 +43,28 @@ void	ft_lstiter(t_list *lst, void (*f)(void *))
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*head;
-	t_list	*tail;
-	t_list	*temp;
+	t_list	temp[3];
 	void	*f_temp;
 
 	if (!lst || !f)
 		return (NULL);
-	head = NULL;
+	temp[0].next = NULL;
 	while (lst)
 	{
 		f_temp = f(lst->content);
-		temp = ft_lstnew(f_temp);
-		if (!temp)
+		temp[2].next = ft_lstnew(f_temp);
+		if (!temp[2].next)
 		{
 			free(f_temp);
-			ft_lstclear(&head, del);
+			ft_lstclear(&temp[0].next, del);
 			return (NULL);
 		}
-		if (!head)
-			head = temp;
+		if (!temp[0].next)
+			temp[0].next = temp[2].next;
 		else
-			tail->next = temp;
-		tail = temp;
+			temp[1].next->next = temp[2].next;
+		temp[1].next = temp[2].next;
 		lst = lst->next;
 	}
-	return (head);
+	return (temp[0].next);
 }
