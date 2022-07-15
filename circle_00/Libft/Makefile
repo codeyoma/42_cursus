@@ -25,7 +25,7 @@ _DONE		=	$(GREEN)✓$(RESET)
 _PART		=
 #	Loading bar
 #==============================================================================
-SHELL	=	/bin/bash
+# SHELL	=	/bin/bash
 sp		=	/-\|/
 idx		=	0
 #==============================================================================
@@ -70,7 +70,7 @@ endif
 #==============================================================================
 #	Compile
 #==============================================================================
-CC			=	gcc
+CC			=	cc
 CC_W_FLAG	=	all extra error
 CC_FLAG		+=	$(addprefix -W, $(CC_W_FLAG))
 RM			=	rm
@@ -114,9 +114,9 @@ DEFINE		=	-DLEAK_CHECK=1
 all			:	$(NAME)
 
 $(NAME)		:	$(OBJECT)
-		@if [ $(idx) -gt 0 ]; then\
-			printf "\b$(_DONE)\n";\
-		fi
+# @if [ $(idx) -gt 0 ]; then\
+# 	printf "\b$(_DONE)\n";\
+# fi
 		@$(AR) $(AR_FLAG) $@ $^
 		@printf "$(_SUCCESS) $(_NAME) - $(_PART) $(_DONE)\n"
 
@@ -130,13 +130,13 @@ obj_dir		:
 $(OBJECT)	:	| obj_dir
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c
-		$(eval idx = $(shell expr $(idx) + 1))
-		$(eval t_idx = $(shell expr $(idx) % 4 + 1))
-		$(eval chr = $(shell echo $(sp) | cut -c $(t_idx)))
-		@if [ $(idx) = 1 ]; then\
-			printf "   $(_PROG) ";\
-		fi
-		@printf "\b$(chr)"
+# $(eval idx = $(shell expr $(idx) + 1))
+# $(eval t_idx = $(shell expr $(idx) % 4 + 1))
+# $(eval chr = $(shell echo $(sp) | cut -c $(t_idx)))
+# @if [ $(idx) = 1 ]; then\
+# 	printf "   $(_prog) ";\
+# fi
+# @printf "\b$(chr)"
 		@$(CC) $(CFLAG) -o $@ -c $<
 #@$(CC) $(CFLAG) $(LIB_LNK) -o $@ -c $<
 

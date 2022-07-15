@@ -20,10 +20,9 @@ t_list	*ft_lstnew(void *content)
 
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	if (lst)
+	if (new)
 	{
-		if (new)
-			new->next = *lst;
+		new->next = *lst;
 		*lst = new;
 	}
 }
